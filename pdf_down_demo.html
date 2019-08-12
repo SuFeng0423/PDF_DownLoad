@@ -10,9 +10,10 @@
 
 <body>
     <!--img src="./img/Dragon Knight.jpg" id="img">-->
-    <div style="width: 500px;height: 800px;background-color: blue;" id="img">
-        <img src="./img/Beast Master.jpg" alt=""></div>
-    <button id="renderPdf">DOWNLOAD PDF</button>
+    <div style="width:400px;height: 200px;background-color: yellowgreen;" id="img">
+        <img src="./img/Beast Master.jpg" alt=""> 在id为img的范围内，可以设置宽高尺寸、背景颜色、图片等...此区域为pdf文件有效区
+    </div>
+    <button id="renderPdf">下载 PDF</button>
     <script type="text/javascript" src="./js/html2canvas.js"></script>
     <script type="text/javascript" src="./js/jsPdf.debug.js"></script>
     <script type="text/javascript">
@@ -31,7 +32,7 @@
 
                     //需要dataUrl格式
                     pdf.addImage(pageData, 'JPEG', 0, 0, canvas.width, canvas.height);
-
+                    //保存的文件名称    
                     pdf.save('content.pdf');
 
                 }
