@@ -1,0 +1,43 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <title>
+        html2canvas example
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+    <!--img src="./img/Dragon Knight.jpg" id="img">-->
+    <div style="width: 500px;height: 800px;background-color: blue;" id="img">
+        <img src="./img/Beast Master.jpg" alt=""></div>
+    <button id="renderPdf">DOWNLOAD PDF</button>
+    <script type="text/javascript" src="./js/html2canvas.js"></script>
+    <script type="text/javascript" src="./js/jsPdf.debug.js"></script>
+    <script type="text/javascript">
+        var downPdf = document.getElementById("renderPdf");
+
+        downPdf.onclick = function() {
+            html2canvas(document.getElementById("img"), {
+                onrendered: function(canvas) {
+                    var contentWidth = canvas.width;
+                    var contentHeight = canvas.height;
+                    //返回图片URL，参数：图片格式和清晰度(0-1)
+                    var pageData = canvas.toDataURL('image/jpeg', 1.0);
+
+                    //方向横向|默认竖直，尺寸ponits，格式[canvas.width, canvas.height]
+                    var pdf = new jsPDF('1', 'pt', [canvas.width, canvas.height]);
+
+                    //需要dataUrl格式
+                    pdf.addImage(pageData, 'JPEG', 0, 0, canvas.width, canvas.height);
+
+                    pdf.save('content.pdf');
+
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>
